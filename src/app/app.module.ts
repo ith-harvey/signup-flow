@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // Materialize
 import { MaterializeModule } from "angular2-materialize";
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, SubscriptionComponent, ConfirmComponent, UserInputComponent],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes), MaterializeModule],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes), MaterializeModule, FormsModule],
   providers: [UserDataService],
   bootstrap: [AppComponent]
 })
