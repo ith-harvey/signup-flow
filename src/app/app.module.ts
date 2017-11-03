@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 // Materialize
 import { MaterializeModule } from "angular2-materialize";
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, SubscriptionComponent, ConfirmComponent, UserInputComponent],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes), MaterializeModule, FormsModule],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes), MaterializeModule, FormsModule, HttpModule],
   providers: [UserDataService],
   bootstrap: [AppComponent]
 })

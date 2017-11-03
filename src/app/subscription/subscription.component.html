@@ -1,10 +1,24 @@
 <div class="card hoverable">
-  <div class="card-content">
-    <span class="card-title">Select your subscription</span>
-
-  </div>
-  <div class="card-action">
-    <a href="#">This is a link</a>
-    <a href="#">This is a link</a>
-  </div>
+    <form name="form" (ngSubmit)="f.form.valid && subscribe(f)" #f="ngForm" novalidate>
+    <div class="card-content">
+      <span class="card-title">Select your subscription below</span>
+      <p>
+        <input type="radio" name="subscription" class="" id="basic"  />
+        <label for="basic" class="grey-text text-darken-4">Basic $1.99</label>
+      </p>
+      <p>
+        <input type="radio" name="subscription" class="filled-in" id="mid" />
+        <label for="mid" class="grey-text text-darken-4">Mid $5.99</label>
+      </p>
+      <p>
+        <input type="radio" name="subscription"class="filled-in" id="vip" />
+        <label for="vip" class="grey-text text-darken-4">VIP $12.99</label>
+      </p>
+        <div *ngIf="f.submitted && !basic.valid" class="invalid red-text">Please select your subscription</div>
+    </div>
+    <div class="card-action">
+      <button class="btn waves-effect waves-light red lighten-1"><a [routerLink]="['/signup']">Back</a></button>
+      <button type="submit" class="btn waves-effect waves-light">Review and confirm<i class="material-icons right">send</i></button>
+    </div>
+  </form>
 </div>

@@ -2,34 +2,32 @@
     <form name="form" (ngSubmit)="f.form.valid && register(f)" #f="ngForm" novalidate>
     <div class="card-content">
       <span class="card-title">Input your information below</span>
-
-      <div class="input-field">
+      <div>
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" [ngClass]="{ 'invalid': f.submitted && !name.valid }" [(ngModel)]="model.name" #name="ngModel" required />
+        <input type="text" class="form-control" name="name" [ngClass]="{ 'invalid': f.submitted && !name.valid }" #name="ngModel" value="model.name" [(ngModel)]="model.name" required />
         <div *ngIf="f.submitted && !name.valid" class="invalid red-text">Name is required</div>
       </div>
 
-      <div class="input-field">
+      <div>
         <label for="email">email</label>
-        <input type="email" class="form-control" name="email" [ngClass]="{ 'invalid': f.submitted && !email.valid }" [(ngModel)]="model.email" #email="ngModel" required />
+        <input type="email" class="form-control" name="email" [ngClass]="{ 'invalid': f.submitted && !email.valid }" value="model.email" [(ngModel)]="model.email" #email="ngModel" required />
         <div *ngIf="f.submitted && !email.valid" class="red-text invalid">email is required</div>
       </div>
 
-      <div class="input-field">
+      <div>
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [ngClass]="{ 'invalid': f.submitted && !password.valid }" [(ngModel)]="model.password" #password="ngModel" required />
+        <input type="password" class="form-control" name="password" [ngClass]="{ 'invalid': f.submitted && !password.valid }" [(ngModel)]="model.password" value="model.password" #password="ngModel" required />
         <div *ngIf="f.submitted && !password.valid" class="red-text invalid">Password is required</div>
       </div>
 
-      <div class="input-field">
+      <div>
         <label for="passwordcheck">Re-enter password</label>
         <input type="password" [ngClass]="{ 'invalid': f.submitted && !passwordcheck.valid }" class="form-control validate" name="passwordcheck" [(ngModel)]="model.passwordcheck" #passwordcheck="ngModel" required />
         <div *ngIf="f.submitted && !passwordcheck.valid" class="red-text invalid">Double checking the password is required</div>
       </div>
     </div>
     <div class="card-action">
-      <a href="#">This is a link</a>
-      <button [disabled]="loading" class="btn btn-primary">Register</button>
+      <button class="btn btn-primary">Register</button>
     </div>
   </form>
 </div>
