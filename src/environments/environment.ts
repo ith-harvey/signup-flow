@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://stark-shelf-52582.herokuapp.com'
+  apiUrl: 'https://stark-shelf-52582.herokuapp.com'
 };
