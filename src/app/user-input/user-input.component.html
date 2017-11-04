@@ -16,14 +16,15 @@
 
       <div>
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [ngClass]="{ 'invalid': f.submitted && !password.valid }" [(ngModel)]="model.password" value="model.password" #password="ngModel" required />
+        <input type="password" id="password" class="form-control" name="password" [ngClass]="{ 'invalid': f.submitted && !password.valid }" [(ngModel)]="model.password" value="model.password" #password="ngModel" required validateEqual="passwordcheck" reverse="true"/>
         <div *ngIf="f.submitted && !password.valid" class="red-text invalid">Password is required</div>
+
       </div>
 
       <div>
         <label for="passwordcheck">Re-enter password</label>
-        <input type="password" [ngClass]="{ 'invalid': f.submitted && !passwordcheck.valid }" class="form-control validate" name="passwordcheck" [(ngModel)]="model.passwordcheck" #passwordcheck="ngModel" required />
-        <div *ngIf="f.submitted && !passwordcheck.valid" class="red-text invalid">Double checking the password is required</div>
+        <input type="password" id="passwordcheck" [ngClass]="{ 'invalid': f.submitted && !passwordcheck.valid }" class="form-control validate" name="passwordcheck" [(ngModel)]="model.passwordcheck" #passwordcheck="ngModel" required validateEqual="password"/>
+        <div *ngIf="f.submitted && !passwordcheck.valid" class="red-text invalid">Passwords do not match</div>
       </div>
     </div>
     <div class="card-action">

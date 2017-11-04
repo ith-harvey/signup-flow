@@ -9,7 +9,7 @@
          Email: {{model.email}}
        </li>
        <li class="collection-item">
-         input {{model.password}}
+         Password: <input type="password" value="{{model.password}}">
        </li>
        <li class="collection-item">
          Subscription: {{model.subscription}}
@@ -18,6 +18,6 @@
   </div>
   <div class="card-action">
     <button class="btn waves-effect waves-light red lighten-1" [routerLink]="['/subscription']">Back</button>
-    <button type="submit" class="btn waves-effect waves-light">Confirm your selection<i class="material-icons right">send</i></button>
+    <button type="submit" class="btn waves-effect waves-light">Submit<i class="material-icons right">scheck</i></button>
   </div>
 </div>

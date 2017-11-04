@@ -13,7 +13,10 @@ import { MaterializeModule } from "angular2-materialize";
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { UserInputComponent } from './user-input/user-input.component';
-import { UserDataService} from './user-data.service'
+import { UserDataService} from './user-data.service';
+
+// Directive
+import { EqualValidatorDirective } from './equal-validator.directive';
 
 
 
@@ -26,7 +29,7 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, SubscriptionComponent, ConfirmComponent, UserInputComponent],
+  declarations: [AppComponent, SubscriptionComponent, ConfirmComponent, UserInputComponent, EqualValidatorDirective],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes), MaterializeModule, FormsModule, HttpModule],
   providers: [UserDataService],
   bootstrap: [AppComponent]
