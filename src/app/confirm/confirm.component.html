@@ -1,6 +1,6 @@
 <div class="card hoverable">
   <div class="card-content">
-    <span class="card-title">Please confirm the details</span>
+    <span class="card-title">Please confirm your details</span>
     <ul class="collection">
        <li class="collection-item">
          Name: {{model.name}}
@@ -9,15 +9,15 @@
          Email: {{model.email}}
        </li>
        <li class="collection-item">
-         Password: <input type="password" value="{{model.password}}">
+         Password: <input type="password" class="display-pass" value="{{model.password}}" />
        </li>
        <li class="collection-item">
          Subscription: {{model.subscription}}
        </li>
     </ul>
   </div>
-  <div class="card-action">
+  <div class="card-action button-holder">
     <button class="btn waves-effect waves-light red lighten-1" [routerLink]="['/subscription']">Back</button>
-    <button type="submit" class="btn waves-effect waves-light">Submit<i class="material-icons right">scheck</i></button>
+    <button type="submit" class="btn waves-effect waves-light green accent-4" [routerLink]="['/congratulations']">Submit<i class="material-icons right">check</i></button>
   </div>
 </div>

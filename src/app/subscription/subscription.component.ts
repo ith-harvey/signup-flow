@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-subscription',
@@ -9,7 +10,7 @@ import { UserDataService } from '../user-data.service';
 })
 export class SubscriptionComponent implements OnInit {
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(private userDataService: UserDataService, private router: Router) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token')
@@ -27,7 +28,7 @@ export class SubscriptionComponent implements OnInit {
       })
     }
   }
-
+  // initialize model
   model =  {
       name: '',
       email: '',
@@ -38,10 +39,17 @@ export class SubscriptionComponent implements OnInit {
 
 
   setSubscription({value}) {
-    console.log('here is value',value)
-    console.log('here is value',this.model)
     this.model.subscription = value.subscription
-    this.userDataService.updateRegistration(this.model);
+    // update registration (lives in userDataService)
+    this.userDataService.updateRegistration(this.model).subscribe(
+      (jsonData) => {
+        console.log(jsonData)
+        localStorage.setItem('token', jsonData.token)
+        this.router.navigate(['/confirm'])
+      },
+      (err) => console.error(err),
+      () => console.log("observable complete")
+    )
   }
 
 }

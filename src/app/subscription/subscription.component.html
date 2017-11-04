@@ -3,20 +3,20 @@
     <div class="card-content">
       <span class="card-title">Select your subscription below</span>
       <p>
-        <input type="radio" name="subscription" class="" id="basic" #subscription="ngModel" [(ngModel)]="model.subscription" value="basic" required />
+        <input type="radio" name="subscription" class="" id="basic" #subscription="ngModel" [(ngModel)]="model.subscription" value="Basic $5.99" required />
         <label for="basic" class="grey-text text-darken-4" >Basic $5.99</label>
       </p>
       <p>
-        <input type="radio" name="subscription" #subscription="ngModel" [(ngModel)]="model.subscription" class="filled-in" id="mid" value="mid" required/>
+        <input type="radio" name="subscription" class="" id="mid" #subscription="ngModel" [(ngModel)]="model.subscription" value="Mid $5.99" required />
         <label for="mid" class="grey-text text-darken-4">Mid $5.99</label>
       </p>
       <p>
-        <input type="radio" name="subscription" #subscription="ngModel" [(ngModel)]="model.subscription" value="vip" class="filled-in" id="vip" required />
+        <input type="radio" name="subscription" #subscription="ngModel" [(ngModel)]="model.subscription" value="VIP $12.99" class="filled-in" id="vip" required />
         <label for="vip" class="grey-text text-darken-4">VIP $12.99</label>
       </p>
         <div *ngIf="f.submitted && !subscription.valid" class="invalid red-text">Please select your subscription</div>
     </div>
-    <div class="card-action">
+    <div class="card-action button-holder">
       <button class="btn waves-effect waves-light red lighten-1" [routerLink]="['/signup']">Back</button>
       <button type=submit class="btn waves-effect waves-light">Review and confirm<i class="material-icons right">send</i></button>
     </div>

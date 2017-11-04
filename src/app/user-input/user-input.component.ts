@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
-import { User } from '../user';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-user-input',
@@ -10,14 +10,13 @@ import { User } from '../user';
 })
 
 export class UserInputComponent implements OnInit {
-  constructor(private userDataService: UserDataService) {
+  constructor(private userDataService: UserDataService, private router: Router) {
 
   }
 
   ngOnInit() {
     const token = localStorage.getItem('token')
     // if the user already has a token
-    console.log('token',token)
     if(token) {
       // populate input fields
       this.userDataService.getUser(token).subscribe(data => {
@@ -26,24 +25,34 @@ export class UserInputComponent implements OnInit {
             email: data.user.email,
             password: data.user.hash_pass,
             passwordcheck: data.user.hash_pass,
+            error: ''
           }
       })
     }
   }
-
+  // initialize model
   model =  {
       name: '',
       email: '',
       password: '',
       passwordcheck: '',
+      error: ''
   }
 
 
   register({value}) {
-    // if (value.password != value.passwordcheck) /// return some error here
-    console.log('value',value)
-
-    this.userDataService.updateRegistration(value);
+    // update registration (lives in userDataService)
+    this.userDataService.updateRegistration(value).subscribe(
+      (jsonData) => {
+        localStorage.setItem('token', jsonData.token)
+        this.router.navigate(['/subscription'])
+      },
+      (err) => {
+        console.error('error!',err.json().message)
+        this.model.error = err.json().message
+      },
+      () => console.log("observable complete")
+    )
   }
 
 }

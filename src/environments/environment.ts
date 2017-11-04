@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://stark-shelf-52582.herokuapp.com'
 };

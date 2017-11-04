@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Router } from '@angular/router'
 import { environment } from '../environments/environment';
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { User } from './user'
-
 @Injectable()
 export class UserDataService {
 
-  constructor(private http: Http, private router: Router) { }
+  constructor(private http: Http) { }
 
 
   private extractData(res) {
@@ -21,28 +18,26 @@ export class UserDataService {
     return res.json() || {};
   }
 
+
   public updateRegistration(data) {
+    // (updateRegistration && .put /signupsave) perform the following:
+    //   - if token exists:
+    //       - performs an edit (changes existing info in DB)
+    //   - if token doesn't exist & 'name' column exisists in DB:
+    //       - returns an error to the user
+    //   - if token doesn't exist & 'name' column dosn't exisist:
+    //       - performs a post and saves info to DB
+
     delete data.passwordcheck
     data.token = localStorage.getItem('token')
-
-     return this.http.put(`${environment.apiUrl}/auth/signupsave`, data).map((res:Response) => {
-       console.log('what we get back',res.json())
-       let response = res.json()
-       if ( response.status === 200) {
-         localStorage.setItem('token', response.token)
-
-         if(data.subscription) {
-          this.router.navigate(['/confirm'])
-        } else{
-          this.router.navigate(['/subscription'])
-        }
-
-       }
-     }).subscribe()
-  }
+     return this.http.put(`${environment.apiUrl}/auth/signupsave`, data).map(response => response.json())
+   }
 
   getUser(token): Observable<any> {
-    console.log('token before send', token)
+    // (getUser && .post /signup) perform the following:
+    // - runs a GET request to db (uses id saved in token)
+    // - returns user's info
+
     return this.http.post(`${environment.apiUrl}/auth/signup`, {token}).map(this.extractData)
   }
 

@@ -2,6 +2,7 @@
     <form name="form" (ngSubmit)="f.form.valid && register(f)" #f="ngForm" novalidate>
     <div class="card-content">
       <span class="card-title">Input your information below</span>
+      <div class="red-text invalid">{{model.error}}</div>
       <div>
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" [ngClass]="{ 'invalid': f.submitted && !name.valid }" #name="ngModel" value="model.name" [(ngModel)]="model.name" required />
@@ -27,7 +28,7 @@
         <div *ngIf="f.submitted && !passwordcheck.valid" class="red-text invalid">Passwords do not match</div>
       </div>
     </div>
-    <div class="card-action">
+    <div class="card-action button-holder">
       <button class="btn btn-primary">Register</button>
     </div>
   </form>
