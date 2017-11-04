@@ -21,13 +21,22 @@ export class UserDataService {
     return res.json() || {};
   }
 
-  public register(data) {
+  public updateRegistration(data) {
+    delete data.passwordcheck
+    data.token = localStorage.getItem('token')
+
      return this.http.put(`${environment.apiUrl}/auth/signupsave`, data).map((res:Response) => {
        console.log('what we get back',res.json())
        let response = res.json()
        if ( response.status === 200) {
          localStorage.setItem('token', response.token)
-         this.router.navigate(['/subscription'])
+
+         if(data.subscription) {
+          this.router.navigate(['/confirm'])
+        } else{
+          this.router.navigate(['/subscription'])
+        }
+
        }
      }).subscribe()
   }

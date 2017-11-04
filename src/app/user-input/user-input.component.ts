@@ -32,7 +32,7 @@ export class UserInputComponent implements OnInit {
   }
 
   model =  {
-      name: 'bears',
+      name: '',
       email: '',
       password: '',
       passwordcheck: '',
@@ -41,10 +41,9 @@ export class UserInputComponent implements OnInit {
 
   register({value}) {
     // if (value.password != value.passwordcheck) /// return some error here
-
-    delete value.passwordcheck
     console.log('value',value)
-    this.userDataService.register(value);
+
+    this.userDataService.updateRegistration(value);
   }
 
 }
